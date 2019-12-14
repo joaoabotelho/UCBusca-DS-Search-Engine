@@ -1,5 +1,7 @@
 package com.botelho.commons;
 
-public enum RequestType {
+import java.io.Serializable;
+
+public enum RequestType implements Serializable {
     LOGIN
 }

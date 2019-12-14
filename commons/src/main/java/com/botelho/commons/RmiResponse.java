@@ -1,10 +1,12 @@
 package com.botelho.commons;
 
-public class Response<T> {
+import java.io.Serializable;
+
+public class RmiResponse<T> implements Serializable {
     private final ResponseStatus status;
     private final T data;
 
-    public Response(final ResponseStatus status, final T data) {
+    public RmiResponse(final ResponseStatus status, final T data) {
         this.status = status;
         this.data = data;
     }

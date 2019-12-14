@@ -1,6 +1,8 @@
 package com.botelho.commons;
 
-public enum ResponseStatus {
+import java.io.Serializable;
+
+public enum ResponseStatus implements Serializable {
     SUCCESS,
     FAILED
 }
