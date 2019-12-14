@@ -24,8 +24,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -33,6 +33,12 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <webXml>web\WEB-INF\web.xml</webXml>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>web</directory>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
             <plugin>
@@ -40,9 +46,9 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://localhost:8080/manager/text</url>
+                    <url>http://localhost:8080</url>
                     <server>TomcatServer</server>
-                    <path>/myapp</path>
+                    <path>/</path>
                 </configuration>
             </plugin>
         </plugins>
