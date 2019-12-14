@@ -1,6 +1,8 @@
 package com.botelho.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,9 +13,10 @@ public class LoginAction extends ActionSupport {
     private Integer id;
     private String username;
     private String password;
-    //private static Logger logger = (Logger) LogManager.getLogger(LoginAction.class);
+    private static Logger logger = LoggerFactory.getLogger(LoginAction.class);
 
     public String execute() {
+        logger.info("Info log message");
         String ret = ERROR;
         Connection conn = null;
 
