@@ -4,14 +4,15 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Register</title>
+    <title>UCbusca</title>
   </head>
   <body>
-    <h3>Register for a prize by completing this form.</h3>
+    <h3>Welcome to UC Busca</h3>
+    <s:a action="goRegister">Register</s:a>
+    <s:a action="goLogin">Login</s:a>
 
-    <s:form action="loginaction">
-      <s:textfield name="userBean.username" label="Username" />
-      <s:password name="userBean.password" label="Password"/>
+    <s:form action="search">
+      <s:textfield name="search" label="Search" />
       <s:submit/>
     </s:form>
   </body>
