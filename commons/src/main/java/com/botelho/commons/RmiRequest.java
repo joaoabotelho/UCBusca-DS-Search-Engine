@@ -2,7 +2,7 @@ package com.botelho.commons;
 
 import java.io.Serializable;
 
-public class RmiRequest<T> implements Serializable {
+public class RmiRequest<T extends Serializable> implements Serializable {
     private final User user;
     private final RequestType type;
     private final T data;

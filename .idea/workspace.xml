@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c4f52d5-3086-4f36-ac87-e0924e107d79" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/rmi-server/src/main/java/com/botelho/rmi/server/multicast/MulticastClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/rmi-server/src/main/java/com/botelho/rmi/server/multicast/MulticastClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/CustomDatagramPacket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/MulticastRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/MulticastResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/RmiRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/RmiRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/RmiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/RmiResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/ServerType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/src/main/java/com/botelho/commons/utils/NetworkUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multicast-server/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multicast-server/src/main/java/com/botelho/multicast/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multicast-server/src/main/java/com/botelho/multicast/MulticastServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multicast-server/src/main/java/com/botelho/multicast/Storage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multicast-server/src/main/java/com/botelho/multicast/auth/Auth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/multicast-server/src/main/java/com/botelho/multicast/routing/Router.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rmi-server/src/main/java/com/botelho/rmi/server/manager/auth/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/rmi-server/src/main/java/com/botelho/rmi/server/manager/auth/Auth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rmi-server/src/main/java/com/botelho/rmi/server/utils/RequestUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rmi-server/src/main/java/com/botelho/rmi/server/utils/ResponseUtils.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +47,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -81,10 +97,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="801" y="271" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1576343623644" />
-    <state x="834" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1576329742787">
+    <state x="834" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1576348409357">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="834" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576329742787" />
+    <state x="834" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1576348409357" />
     <state x="746" y="413" width="494" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1576330767246">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -117,13 +133,13 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="302" y="250" width="1372" height="605" key="new project wizard/67.27.1853.1053@67.27.1853.1053" timestamp="1576295642766" />
-    <state x="657" y="253" key="run.anything.popup" timestamp="1576334732923">
+    <state x="657" y="253" key="run.anything.popup" timestamp="1576356303294">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="657" y="253" key="run.anything.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1576334732923" />
-    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1576344015119">
+    <state x="657" y="253" key="run.anything.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1576356303294" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1576351911994">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1576344015119" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1576351911994" />
   </component>
 </project>

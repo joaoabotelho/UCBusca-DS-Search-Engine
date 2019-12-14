@@ -2,7 +2,7 @@ package com.botelho.commons;
 
 import java.io.Serializable;
 
-public class RmiResponse<T> implements Serializable {
+public class RmiResponse<T extends Serializable> implements Serializable {
     private final ResponseStatus status;
     private final T data;
 
