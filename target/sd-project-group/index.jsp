@@ -1,15 +1,13 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hello World Example</title>
+    <title>Login to UC Busca</title>
 </head>
-<body>
-<h1>Hello World Example</h1>
 
-<form action="hello">
-    <label for="name">Enter your name</label><br/>
-    <input type="text" name="name"/>
-    <input type="submit" value="Submit"/>
+<body>
+<form action = "loginaction" method = "post">
+    User:<br/><input type = "text" name = "username"/><br/>
+    Password:<br/><input type = "password" name = "password"/><br/>
+    <input type = "submit" value = "Login"/>
 </form>
 </body>
 </html>
