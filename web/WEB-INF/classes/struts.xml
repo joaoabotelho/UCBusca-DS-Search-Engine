@@ -7,8 +7,9 @@
 <struts>
     <package name="default" namespace="/" extends="struts-default">
 
-        <action name="hello" class="com.botelho.action.HelloWorldAction">
-            <result>greeting.jsp</result>
+        <action name="loginaction" class="com.botelho.action.LoginAction" method="execute">
+            <result name = "success">/success.jsp</result>
+            <result name = "error">/error.jsp</result>
         </action>
     </package>
 </struts>
