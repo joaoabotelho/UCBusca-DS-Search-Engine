@@ -10,8 +10,5 @@
             <result name = "success">/success.jsp</result>
             <result name = "error">/error.jsp</result>
         </action>
-<!--        <action name="index">-->
-<!--            <result>/index.jsp</result>-->
-<!--        </action>-->
     </package>
 </struts>
