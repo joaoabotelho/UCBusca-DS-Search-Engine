@@ -21,7 +21,17 @@ public class Storage {
         return false;
     }
 
+    public boolean createUser(User user) {
+        if(!users.containsKey(user.getUsername())) {
+            users.put(user.getUsername(), user);
+            return true;
+        }
+        return false;
+    }
+
     private static class SingletonHelper {
         private static final Storage INSTANCE = new Storage();
     }
+
+
 }

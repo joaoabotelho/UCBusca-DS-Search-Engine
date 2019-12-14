@@ -12,6 +12,9 @@ public class Router {
         switch (rmiRequest.getType()) {
             case LOGIN:
                 return Auth.login(rmiRequest);
+
+            case REGISTER:
+                return Auth.register(rmiRequest);
         }
 
         return null;
