@@ -7,12 +7,13 @@
     <groupId>com.botelho</groupId>
     <artifactId>sd-project-group</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>client</module>
+        <module>rmi-server</module>
+        <module>multicast-server</module>
+        <module>commons</module>
+    </modules>
     <dependencies>
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-core</artifactId>
-            <version>2.3.1.2</version>
-        </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -20,7 +21,7 @@
         </dependency>
     </dependencies>
 
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <build>
         <finalName>sd-project-group</finalName>
         <plugins>
@@ -33,30 +34,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <webXml>web\WEB-INF\web.xml</webXml>
-                    <webResources>
-                        <resource>
-                            <!-- this is relative to the pom.xml directory -->
-                            <directory>web</directory>
-                        </resource>
-                    </webResources>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <url>http://localhost:8080</url>
-                    <server>TomcatServer</server>
-                    <path>/</path>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-    
+
 </project>

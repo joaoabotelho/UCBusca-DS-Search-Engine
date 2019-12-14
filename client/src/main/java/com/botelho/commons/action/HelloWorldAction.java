@@ -1,4 +1,4 @@
-package com.botelho.action;
+package com.botelho.commons.action;
 
 public class HelloWorldAction {
     private String name;
