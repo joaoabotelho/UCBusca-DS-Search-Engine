@@ -3,7 +3,6 @@ package com.botelho.rmi.server.multicast;
 import com.botelho.commons.CustomDatagramPacket;
 import com.botelho.commons.MulticastRequest;
 import com.botelho.commons.MulticastResponse;
-import com.botelho.rmi.server.RmiServerImpl;
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +36,15 @@ public class MulticastClient {
         return socket;
     }
 
+    private static void closeSocket(MulticastSocket socket) {
+        try {
+            socket.leaveGroup(InetAddress.getByName(MULTICAST_HOST));
+        } catch (IOException e) {
+            throw new RuntimeException(String.format("Couldn't get InetAddress for the host %s", MULTICAST_HOST), e);
+        }
+        socket.close();
+    }
+
     public static MulticastResponse communicate(MulticastRequest request) {
 
         byte[] serializedRequest = SerializationUtils.serialize(request);
@@ -50,7 +58,7 @@ public class MulticastClient {
         } catch (IOException e) {
             throw new RuntimeException("Couldn't send the packet through multicast", e);
         } finally {
-            socket.close();
+            closeSocket(socket);
         }
 
         return response;
