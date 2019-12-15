@@ -241,6 +241,9 @@ public class Storage {
 
     public boolean createUser(User user) {
         if(!users.containsKey(user.getUsername())) {
+            if(users.isEmpty()){
+               user.setType(UserType.ADMIN);
+            }
             users.put(user.getUsername(), user);
             return true;
         }

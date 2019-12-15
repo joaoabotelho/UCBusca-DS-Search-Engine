@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: joaobotelho
@@ -13,10 +14,11 @@
 <body>
 <h3>Register</h3>
 <s:form action="registerAction">
-    <s:textfield name="user.username" label="Username" />
-    <s:password name="user.password" label="Password"/>
+    <s:textfield name="username" label="Username" />
+    <s:password name="password" label="Password"/>
     <s:submit/>
     <p> Failed to register </p>
 </s:form>
 </body>
 </html>
+

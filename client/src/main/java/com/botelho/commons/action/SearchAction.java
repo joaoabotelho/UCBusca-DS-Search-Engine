@@ -20,7 +20,7 @@ public class SearchAction extends ActionSupportBase {
 
     public String execute() {
         logger.info("Start search for {}", search);
-        RmiResponse<ArrayList<WebPage>> rmiResponse = getRmiClient().communicate(new RmiRequest<>(null, RequestType.SEARCH, search));
+        RmiResponse<ArrayList<WebPage>> rmiResponse = getRmiClient().communicate(new RmiRequest<>(currentUser(), RequestType.SEARCH, search));
 
         switch(rmiResponse.getStatus()) {
             case SUCCESS:
