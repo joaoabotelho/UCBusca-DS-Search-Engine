@@ -18,5 +18,7 @@
     <s:submit/>
     <p> Failed to create Url </p>
 </s:form>
+
+<s:a action="goHomeAdmin">Home</s:a>
 </body>
 </html>

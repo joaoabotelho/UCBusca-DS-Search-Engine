@@ -13,6 +13,7 @@
 </head>
 <body>
 <s:a action="logoutAction">Logout</s:a>
-
+<s:a action="goAdminUrl">Add new URL</s:a>
+<s:a action="goAdminPromote">Promote User to Admin</s:a>
 </body>
 </html>
