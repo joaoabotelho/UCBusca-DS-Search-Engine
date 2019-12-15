@@ -4,6 +4,7 @@ import com.botelho.commons.RmiRequest;
 import com.botelho.commons.RequestType;
 import com.botelho.commons.RmiResponse;
 import com.botelho.commons.User;
+import com.botelho.commons.UserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,12 +13,13 @@ public class LoginAction extends ActionSupportBase {
     private static Logger logger = LoggerFactory.getLogger(LoginAction.class);
 
     public String execute() {
+        user.setType(UserType.NORMAL);
         RmiResponse rmiResponse = getRmiClient().communicate(new RmiRequest<>(null, RequestType.LOGIN, user));
 
         switch (rmiResponse.getStatus()) {
             case SUCCESS:
                 logger.info("User {} logged in.", user.getUsername());
-                getSession().put(USERNAME, user.getUsername());
+                getSession().put(CURRENT_USER, user);
                 return SUCCESS;
 
             case FAILED:
