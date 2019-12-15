@@ -17,6 +17,10 @@ public class Router {
                 return Search.searchByWords(rmiRequest);
             case REGISTER:
                 return Auth.register(rmiRequest);
+            case CREATEURL:
+                return Admin.createUrl(rmiRequest);
+            case PROMOTEUSER:
+                return Admin.promoteUser(rmiRequest);
         }
 
         return null;
