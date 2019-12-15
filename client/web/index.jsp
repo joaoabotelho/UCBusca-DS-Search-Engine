@@ -15,5 +15,6 @@
       <s:textfield name="search" label="Search" />
       <s:submit/>
     </s:form>
+
   </body>
 </html>
