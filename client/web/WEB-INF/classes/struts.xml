@@ -19,6 +19,22 @@
             <result>index.jsp</result>
         </action>
 
+        <action name="goHomeAdmin">
+            <result>adminIndex.jsp</result>
+        </action>
+
+        <action name="goHomeNormal">
+            <result>normalIndex.jsp</result>
+        </action>
+
+        <action name="goAdminUrl">
+            <result>adminCreateUrl.jsp</result>
+        </action>
+
+        <action name="goAdminPromote">
+            <result>adminPromoteUser.jsp</result>
+        </action>
+
         <action name="registerAction" class="com.botelho.commons.action.RegisterAction" method="execute">
             <result name="success">/index.jsp</result>
             <result name="error">/registerFailed.jsp</result>
@@ -28,9 +44,14 @@
             <result>login.jsp</result>
         </action>
 
+        <action name="logoutAction" class="com.botelho.commons.action.LogoutAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="error">/normalIndex.jsp</result>
+        </action>
+
         <action name="loginAction" class="com.botelho.commons.action.LoginAction" method="execute">
-            <result name="success">/success.jsp</result>
-            <result name="admin">/success.jsp</result>
+            <result name="success">/normalIndex.jsp</result>
+            <result name="admin">/adminIndex.jsp</result>
             <result name="error">/loginFailed.jsp</result>
         </action>
 

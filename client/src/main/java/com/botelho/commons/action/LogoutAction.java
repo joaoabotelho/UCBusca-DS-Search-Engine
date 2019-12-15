@@ -12,17 +12,18 @@ public class LogoutAction extends ActionSupportBase {
     private static Logger logger = LoggerFactory.getLogger(LoginAction.class);
 
     public String execute() {
-//        RmiResponse rmiResponse = getRmiClient().communicate(new RmiRequest<>(null, RequestType.LOGIN, user));
+        RmiResponse rmiResponse = getRmiClient().communicate(new RmiRequest<>(null, RequestType.LOGIN, currentUser()));
 
-//        switch (rmiResponse.getStatus()) {
-//            case SUCCESS:
-//                logger.info("User {} logged in.", user.getUsername());
-//                return SUCCESS;
-//
-//            case FAILED:
-//                logger.info("User {} failed to login.", user.getUsername());
-//                return ERROR;
-//        }
+        switch (rmiResponse.getStatus()) {
+            case SUCCESS:
+                logger.info("User logged out.");
+                getSession().remove(CURRENT_USER);
+                return SUCCESS;
+
+            case FAILED:
+                logger.info("User failed to logout.");
+                return ERROR;
+        }
         return SUCCESS;
     }
 }

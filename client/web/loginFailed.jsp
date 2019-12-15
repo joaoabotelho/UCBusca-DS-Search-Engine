@@ -14,10 +14,13 @@
 <body>
 <h3>Login</h3>
 <s:form action="loginAction">
-    <s:textfield name="user.username" label="Username" />
-    <s:password name="user.password" label="Password"/>
+    <s:textfield name="username" label="Username" />
+    <s:password name="password" label="Password"/>
     <s:submit/>
     <p> Failed to login </p>
 </s:form>
+
+<s:a action="goRegister">Register</s:a>
+<s:a action="goHome">Home</s:a>
 </body>
 </html>

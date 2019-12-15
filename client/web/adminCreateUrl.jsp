@@ -17,5 +17,7 @@
     <s:textfield name="url" label="URL" />
     <s:submit/>
 </s:form>
+
+<s:a action="goHomeAdmin">Home</s:a>
 </body>
 </html>

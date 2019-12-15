@@ -19,6 +19,8 @@
     <s:submit/>
     <p> Failed to register </p>
 </s:form>
+<s:a action="goHome">Home</s:a>
+<s:a action="goLogin">Login</s:a>
 </body>
 </html>
 
