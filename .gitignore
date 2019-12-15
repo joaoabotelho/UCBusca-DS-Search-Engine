@@ -1,4 +1,4 @@
 */**/target
 .idea
 */**/*.iml
-./rmi-server/target/storage
+./rmi-server/storage

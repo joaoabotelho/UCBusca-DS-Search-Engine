@@ -12,7 +12,7 @@ import static com.botelho.commons.Configuration.RMI_PORT;
 import static com.botelho.commons.Configuration.RMI_REGISTRY_NAME;
 
 public abstract class ActionSupportBase extends ActionSupport implements SessionAware {
-    protected static final String CURRENT_USER = "currentUser";
+    public static final String CURRENT_USER = "currentUser";
 
     private final RmiClient rmiClient = RmiClient.getInstance(RMI_PORT, RMI_REGISTRY_NAME);
 

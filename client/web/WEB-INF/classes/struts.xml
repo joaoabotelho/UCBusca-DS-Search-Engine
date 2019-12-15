@@ -6,25 +6,41 @@
 
 <struts>
     <package name="default" namespace="/" extends="struts-default">
+        <interceptors>
+            <interceptor name="authInterceptor" class="com.botelho.commons.interceptors.AuthInterceptor"/>
+            <interceptor-stack name="interceptorStack">
+                <interceptor-ref name="authInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="interceptorStack"/>
+
+        <global-results>
+            <result name="auth_failed" type="redirectAction">goHome</result>
+        </global-results>
+
         <action name="search" class="com.botelho.commons.action.SearchAction" method="execute">
-            <result name = "success">search_results.jsp</result>
-            <result name = "error">/error.jsp</result>
+            <result name="success">search_results.jsp</result>
+            <result name="error">/error.jsp</result>
         </action>
 
         <action name="searchAdmin" class="com.botelho.commons.action.SearchAction" method="execute">
-        <result name = "success">search_results_admin.jsp</result>
-    </action>
+            <result name="success">search_results_admin.jsp</result>
+        </action>
 
 
         <action name="searchNormal" class="com.botelho.commons.action.SearchAction" method="execute">
-            <result name = "success">search_results_normal.jsp</result>
+            <result name="success">search_results_normal.jsp</result>
         </action>
 
-    <action name="goRegister">
+        <action name="goRegister">
+            <interceptor-ref name="defaultStack"/>
             <result>register.jsp</result>
         </action>
 
         <action name="goHome">
+            <interceptor-ref name="defaultStack"/>
             <result>index.jsp</result>
         </action>
 
@@ -45,11 +61,13 @@
         </action>
 
         <action name="registerAction" class="com.botelho.commons.action.RegisterAction" method="execute">
+            <interceptor-ref name="defaultStack"/>
             <result name="success">/index.jsp</result>
             <result name="error">/registerFailed.jsp</result>
         </action>
 
         <action name="goLogin">
+            <interceptor-ref name="defaultStack"/>
             <result>login.jsp</result>
         </action>
 
@@ -59,8 +77,20 @@
         </action>
 
         <action name="loginAction" class="com.botelho.commons.action.LoginAction" method="execute">
+            <
+            <
+            <
+            <
+            <
+            <
+            < HEAD
             <result name="success">/normalIndex.jsp</result>
             <result name="admin">/adminIndex.jsp</result>
+            =======
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">/success.jsp</result>
+            <result name="admin">/success.jsp</result>
+            >>>>>>> block-pages
             <result name="error">/loginFailed.jsp</result>
         </action>
 
@@ -78,7 +108,8 @@
             <result>adminPromoteUser.jsp</result>
         </action>
 
-        <action name="adminPromoteUserAction" class="com.botelho.commons.action.AdminPromoteUserAction" method="execute">
+        <action name="adminPromoteUserAction" class="com.botelho.commons.action.AdminPromoteUserAction"
+                method="execute">
             <!--FIXME: Should be redirecting to somewhere else in case of success!!!!-->
             <result name="success">/adminIndex.jsp</result>
             <result name="error">/adminPromoteUserFailed.jsp</result>
