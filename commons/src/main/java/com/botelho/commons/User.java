@@ -7,11 +7,13 @@ public class User implements Serializable {
 
     private String password;
 
-    public User(final String username) {
-        this(username, null);
+    private UserType type;
+
+    public User(final String username, final UserType type) {
+        this(username, null, type);
     }
 
-    public User(final String username, final String password) {
+    public User(final String username, final String password, final UserType type) {
         this.username = username;
         this.password = password;
     }
@@ -30,5 +32,9 @@ public class User implements Serializable {
 
     public void setPassword(final String password) {
         this.password = password;
+    }
+
+    public UserType getType() {
+        return type;
     }
 }
