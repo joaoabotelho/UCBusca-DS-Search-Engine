@@ -11,7 +11,16 @@
             <result name = "error">/error.jsp</result>
         </action>
 
-        <action name="goRegister">
+        <action name="searchAdmin" class="com.botelho.commons.action.SearchAction" method="execute">
+        <result name = "success">search_results_admin.jsp</result>
+    </action>
+
+
+        <action name="searchNormal" class="com.botelho.commons.action.SearchAction" method="execute">
+            <result name = "success">search_results_normal.jsp</result>
+        </action>
+
+    <action name="goRegister">
             <result>register.jsp</result>
         </action>
 
@@ -61,7 +70,7 @@
 
         <action name="adminCreateUrlAction" class="com.botelho.commons.action.AdminCreateUrlAction" method="execute">
             <!--FIXME: Should be redirecting to somewhere else in case of success!!!!-->
-            <result name="success">/success.jsp</result>
+            <result name="success">/adminIndex.jsp</result>
             <result name="error">/adminCreateUrlFailed.jsp</result>
         </action>
 
@@ -71,7 +80,7 @@
 
         <action name="adminPromoteUserAction" class="com.botelho.commons.action.AdminPromoteUserAction" method="execute">
             <!--FIXME: Should be redirecting to somewhere else in case of success!!!!-->
-            <result name="success">/success.jsp</result>
+            <result name="success">/adminIndex.jsp</result>
             <result name="error">/adminPromoteUserFailed.jsp</result>
         </action>
     </package>

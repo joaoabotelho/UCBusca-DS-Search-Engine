@@ -25,4 +25,12 @@ public class AdminCreateUrlAction extends ActionSupportBase {
 
         return null;
     }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }
