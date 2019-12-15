@@ -16,13 +16,18 @@ public class Search {
 
 
     public static RmiResponse searchByWords(RmiRequest<String> rmiRequest){
-        logger.info("Splitting words to List");
-        List<String> data = Arrays.asList(rmiRequest.getData().split(" "));
+        String search = rmiRequest.getData();
+        if(!search.startsWith("http")) {
+            logger.info("Splitting words to List");
+            List<String> data = Arrays.asList(search.split(" "));
 
-        logger.info("Searching in storage");
-        ArrayList<WebPage> result = Storage.getInstance().searchFor(data, rmiRequest.getUser());
-        logger.info("Finished in storage");
+            logger.info("Searching in storage");
+            ArrayList<WebPage> result = Storage.getInstance().searchFor(data, rmiRequest.getUser());
+            logger.info("Finished in storage");
 
-        return new RmiResponse(ResponseStatus.SUCCESS, result);
+            return new RmiResponse(ResponseStatus.SUCCESS, result);
+        }
+
+        return new RmiResponse(ResponseStatus.FAILED, null);
     }
 }
