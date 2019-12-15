@@ -12,11 +12,13 @@ public class LoginAction extends ActionSupportBase {
     private static Logger logger = LoggerFactory.getLogger(LoginAction.class);
 
     public String execute() {
+        System.out.println(currentUser());
         RmiResponse rmiResponse = getRmiClient().communicate(new RmiRequest<>(null, RequestType.LOGIN, user));
 
         switch (rmiResponse.getStatus()) {
             case SUCCESS:
                 logger.info("User {} logged in.", user.getUsername());
+                getSession().put(USERNAME, user.getUsername());
                 return SUCCESS;
 
             case FAILED:

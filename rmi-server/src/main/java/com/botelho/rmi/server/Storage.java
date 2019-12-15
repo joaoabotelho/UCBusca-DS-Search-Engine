@@ -15,6 +15,7 @@ public class Storage {
     }
 
     public boolean authenticateUser(User user) {
+        System.out.println(user.getUsername());
         if (users.containsKey(user.getUsername())) {
             return users.get(user.getUsername()).getPassword().equals(user.getPassword());
         }
