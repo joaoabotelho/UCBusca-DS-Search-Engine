@@ -9,6 +9,7 @@
 <body>
 <h3>Welcome to UC Busca</h3>
 <s:a action="logoutAction">Logout</s:a>
+<s:a action="previousSearchNormal">Last Searches</s:a>
 
 <s:form action="searchNormal">
     <s:textfield name="search" label="Search" />

@@ -12,8 +12,16 @@
         </action>
 
         <action name="searchAdmin" class="com.botelho.commons.action.SearchAction" method="execute">
-        <result name = "success">search_results_admin.jsp</result>
-    </action>
+            <result name = "success">search_results_admin.jsp</result>
+        </action>
+
+        <action name="previousSearchAdmin" class="com.botelho.commons.action.PreviousSearchAction" method="execute">
+            <result name = "success">lastSearchAdmin.jsp</result>
+        </action>
+
+        <action name="previousSearchNormal" class="com.botelho.commons.action.PreviousSearchAction" method="execute">
+            <result name = "success">lastSearchNormal.jsp</result>
+        </action>
 
 
         <action name="searchNormal" class="com.botelho.commons.action.SearchAction" method="execute">
