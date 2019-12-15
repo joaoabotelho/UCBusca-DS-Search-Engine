@@ -21,6 +21,9 @@ public class LoginAction extends ActionSupportBase {
                 logger.info("User {} logged in.", user.getUsername());
                 getSession().put(CURRENT_USER, rmiResponse.getData());
                 if(currentUser().getType() == UserType.ADMIN){
+                    if(currentUser().isJustGotPromoted()){
+                        return "adminJGP";
+                    }
                     return "admin";
                 }
                 return SUCCESS;

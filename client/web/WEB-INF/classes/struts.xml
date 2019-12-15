@@ -77,20 +77,10 @@
         </action>
 
         <action name="loginAction" class="com.botelho.commons.action.LoginAction" method="execute">
-            <
-            <
-            <
-            <
-            <
-            <
-            < HEAD
+            <interceptor-ref name="defaultStack"/>
             <result name="success">/normalIndex.jsp</result>
             <result name="admin">/adminIndex.jsp</result>
-            =======
-            <interceptor-ref name="defaultStack"/>
-            <result name="success">/success.jsp</result>
-            <result name="admin">/success.jsp</result>
-            >>>>>>> block-pages
+            <result name="adminJGP">/adminJustGotPromotedIndex.jsp</result>
             <result name="error">/loginFailed.jsp</result>
         </action>
 
