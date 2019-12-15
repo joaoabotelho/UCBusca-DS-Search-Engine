@@ -1,6 +1,7 @@
 package com.botelho.rmi.server;
 
 import com.botelho.commons.User;
+import com.botelho.commons.UserType;
 import com.botelho.commons.WebPage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -47,7 +48,7 @@ public class Storage {
         logger.info("Database seeded");
     }
 
-    Boolean newUrlToIndex(String url, int depth) throws IOException {
+    public Boolean newUrlToIndex(String url, int depth) throws IOException {
         // If link doesnt exist, depth of recursion it not passed and valid Url
         if(!links.contains(url) && (depth < MAX_DEPTH) && isUrlValid(url)) {
             Document doc = Jsoup.connect(url).get();  // Documentation: https://jsoup.org/
@@ -77,6 +78,22 @@ public class Storage {
             page.setLinks(final_links);
         }
         return true;
+    }
+
+    User userFind(String username){
+        return users.get(username);
+    }
+
+    public Boolean promoteUser(String username) {
+        User user = userFind(username);
+        if(user != null) {
+            logger.info("User found to promote: {}", user.getUsername());
+            user.setType(UserType.ADMIN);
+            return true;
+        } else {
+            logger.info("User not found.");
+            return false;
+        }
     }
 
     private void seedStorage() {

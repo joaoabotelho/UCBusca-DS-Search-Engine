@@ -6,7 +6,7 @@ import com.botelho.commons.RmiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Action extends ActionSupportBase {
+public class AdminCreateUrlAction extends ActionSupportBase {
     private String url;
     private static Logger logger = LoggerFactory.getLogger(LoginAction.class);
 

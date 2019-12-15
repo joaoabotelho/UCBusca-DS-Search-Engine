@@ -2,6 +2,7 @@ package com.botelho.rmi.server.routing;
 
 import com.botelho.commons.RmiRequest;
 import com.botelho.commons.RmiResponse;
+import com.botelho.rmi.server.manager.admin.Admin;
 import com.botelho.rmi.server.manager.auth.Auth;
 import com.botelho.rmi.server.manager.pages.Search;
 

@@ -9,7 +9,11 @@ public class User implements Serializable {
 
     private UserType type;
 
-    public User(final UserType type){ this.type = type; }
+    public User(final UserType type){ this(null, null, type); };
+
+    public User(final String username){ this(username, null,  null); }
+
+    public User(){}
 
     public User(final String username, final UserType type) {
         this(username, null, type);
@@ -40,4 +44,6 @@ public class User implements Serializable {
     public UserType getType() {
         return type;
     }
+
+    public void setType(final UserType type) { this.type = type; }
 }

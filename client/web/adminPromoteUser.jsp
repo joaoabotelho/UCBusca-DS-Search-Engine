@@ -14,7 +14,7 @@
 <body>
 <h3>Admin - Promote User</h3>
 <s:form action="adminPromoteUserAction">
-    <s:textfield name="user.name" label="Username" />
+    <s:textfield name="username" label="Username" />
     <s:submit/>
 </s:form>
 </body>

@@ -7,6 +7,7 @@ import com.botelho.rmi.server.Storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Admin {
     private Admin() {
     }
 
-    public static RmiResponse promoteUser(RmiRequest<User> rmiRequest) {
+    public static RmiResponse promoteUser(RmiRequest<String> rmiRequest) {
         if (Storage.getInstance().promoteUser(rmiRequest.getData())) {
             return new RmiResponse(SUCCESS, null);
         }
@@ -27,8 +28,12 @@ public class Admin {
     }
 
     public static RmiResponse createUrl(RmiRequest<String> rmiRequest) {
-        if (Storage.getInstance().newUrlToIndex(rmiRequest.getData(), 0)) {
-            return new RmiResponse(SUCCESS, null);
+        try {
+            if (Storage.getInstance().newUrlToIndex(rmiRequest.getData(), 0)) {
+                return new RmiResponse(SUCCESS, null);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return new RmiResponse(FAILED, null);
     }
