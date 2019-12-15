@@ -9,7 +9,13 @@ public class User implements Serializable {
 
     private UserType type;
 
-    public User(final UserType type){ this.type = type; }
+    public User() {
+
+    }
+
+    public User(final UserType type) {
+        this(null, type);
+    }
 
     public User(final String username, final UserType type) {
         this(username, null, type);
