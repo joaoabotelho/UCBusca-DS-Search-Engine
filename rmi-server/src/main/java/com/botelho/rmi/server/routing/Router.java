@@ -15,9 +15,8 @@ public class Router {
                 return Auth.login(rmiRequest);
             case SEARCH:
                 return Search.searchByWords(rmiRequest);
-
             case REGISTER:
-                return Auth.register(rmiRequest);r
+                return Auth.register(rmiRequest);
         }
 
         return null;

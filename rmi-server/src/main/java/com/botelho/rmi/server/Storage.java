@@ -204,8 +204,7 @@ public class Storage {
                     }
                     if (!countMap.containsKey(word)) {
                         countMap.put(word, 1);
-                    }
-                    else {
+                    } else {
                         countMap.put(word, countMap.get(word) + 1);
                     }
                 }
@@ -222,6 +221,7 @@ public class Storage {
         }
 
         return countMap;
+    }
 
     public boolean createUser(User user) {
         if(!users.containsKey(user.getUsername())) {
