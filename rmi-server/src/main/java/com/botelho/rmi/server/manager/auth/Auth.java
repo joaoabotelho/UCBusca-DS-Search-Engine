@@ -16,7 +16,7 @@ import static com.botelho.commons.ResponseStatus.SUCCESS;
 public class Auth {
     private static Logger logger = LoggerFactory.getLogger(Auth.class);
 
-    private static final List<String> loggedInUsers = new ArrayList<>();
+    private static final List<User> loggedInUsers = new ArrayList<>();
 
     private Auth() {
     }
@@ -29,17 +29,16 @@ public class Auth {
     }
 
     public static RmiResponse login(RmiRequest<User> rmiRequest) {
-        if (Storage.getInstance().authenticateUser(rmiRequest.getData())) {
-            loggedInUsers.add(rmiRequest.getData().getUsername());
-            return new RmiResponse(SUCCESS, null);
+        User user = Storage.getInstance().getUser(rmiRequest.getData());
+        if (user != null) {
+            loggedInUsers.add(user);
+            return new RmiResponse(SUCCESS, user);
         }
         return new RmiResponse(FAILED, null);
     }
 
     private static RmiResponse logout(RmiRequest<User> rmiRequest) {
-        if(loggedInUsers.contains(rmiRequest.getUser().getUsername())) {
-            loggedInUsers.remove(rmiRequest.getUser().getUsername());
-        }
+        loggedInUsers.remove(rmiRequest.getUser().getUsername());
         return new RmiResponse(SUCCESS, null);
     }
 }

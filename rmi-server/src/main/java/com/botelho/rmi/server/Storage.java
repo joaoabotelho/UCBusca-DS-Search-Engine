@@ -11,27 +11,38 @@ import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.Closeable;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class Storage {
-    private final HashMap<String, User> users = new HashMap<>();
-    private static HashMap<String, HashSet<WebPage>> index = new HashMap<>();
-    private HashSet<String> links = new HashSet<>(); // HashSet of urls
+public class Storage implements Serializable, Closeable {
     private static final int MAX_DEPTH = 4;
-    private int next_web_page_id= 0;
+    private static Storage instance;
     private static Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final HashMap<String, User> users = new HashMap<>();
+    private HashMap<String, HashSet<WebPage>> index = new HashMap<>();
+    private HashSet<String> links = new HashSet<>(); // HashSet of urls
+    private int next_web_page_id = 0;
 
     private Storage() {
         logger.info("Seeding database");
-        seedStorage();
         /* Get best word to search with the most results
         String best = "example";
         Integer best_size = 0;
@@ -47,9 +58,32 @@ public class Storage {
         logger.info("Database seeded");
     }
 
+    public static Storage getInstance() {
+        if (instance == null) {
+            synchronized(Storage.class) {
+                if (instance == null) {
+                    instance = new Storage();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public static void setInstance(Storage storage) {
+        if (instance == null) {
+            synchronized(Storage.class) {
+                if (instance == null) {
+                    instance = storage;
+                    return;
+                }
+            }
+        }
+        throw new RuntimeException("This class was already instanced.");
+    }
+
     Boolean newUrlToIndex(String url, int depth) throws IOException {
         // If link doesnt exist, depth of recursion it not passed and valid Url
-        if(!links.contains(url) && (depth < MAX_DEPTH) && isUrlValid(url)) {
+        if (!links.contains(url) && (depth < MAX_DEPTH) && isUrlValid(url)) {
             Document doc = Jsoup.connect(url).get();  // Documentation: https://jsoup.org/
 
             WebPage page = newWebPage(url, doc.title(), "Hello World", countWords(doc.text()));
@@ -79,7 +113,7 @@ public class Storage {
         return true;
     }
 
-    private void seedStorage() {
+    public void seedStorage() {
         try {
             URI path;
             try {
@@ -93,20 +127,20 @@ public class Storage {
             List<String> allLines = Files.readAllLines(Paths.get(path));
             for (String url : allLines) {
                 // Attempt to connect and get the document
-                newUrlToIndex(url,0);
+                newUrlToIndex(url, 0);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    void addWebPageToIndex(WebPage page){
+    void addWebPageToIndex(WebPage page) {
         for (String word : page.words.keySet()) {
             addToIndexStringToWebPage(word, page);
         }
     }
 
-    void addToIndexStringToWebPage(String key, WebPage page){
+    void addToIndexStringToWebPage(String key, WebPage page) {
         // add a page to the inverted index
         HashSet<WebPage> associated_pages = index.get(key);
         if (associated_pages == null) {
@@ -116,17 +150,13 @@ public class Storage {
         associated_pages.add(page);
     }
 
-    private Boolean isUrlValid(String url){
+    private Boolean isUrlValid(String url) {
         try {
             Jsoup.connect(url).get();
             return true;
         } catch (IOException e) {
             return false;
         }
-    }
-
-    public static Storage getInstance() {
-        return SingletonHelper.INSTANCE;
     }
 
     public boolean authenticateUser(User user) {
@@ -136,7 +166,14 @@ public class Storage {
         return false;
     }
 
-    WebPage newWebPage(String url, String title, String citation, Map<String, Integer> words){
+    public User getUser(User user) {
+        if(authenticateUser(user)) {
+            return users.get(user.getUsername());
+        }
+        return null;
+    }
+
+    WebPage newWebPage(String url, String title, String citation, Map<String, Integer> words) {
         WebPage page = new WebPage(next_web_page_id, url, title, citation, words);
         next_web_page_id++;
         links.add(url);
@@ -144,7 +181,7 @@ public class Storage {
     }
 
 
-    public ArrayList<WebPage> searchFor(List<String> data, User user){
+    public ArrayList<WebPage> searchFor(List<String> data, User user) {
         /* OLD CODE: existing data?
         Search exiting_search = search_requests.get(data);
         if (exiting_search == null) {
@@ -185,9 +222,10 @@ public class Storage {
              */
     }
 
-    private static Map<String, Integer> countWords(String text) {
+    private Map<String, Integer> countWords(String text) {
         Map<String, Integer> countMap = new TreeMap<>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8))));
+        BufferedReader reader =
+                new BufferedReader(new InputStreamReader(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8))));
         String line;
 
         // Get words and respective count
@@ -223,7 +261,7 @@ public class Storage {
     }
 
     public boolean createUser(User user) {
-        if(!users.containsKey(user.getUsername())) {
+        if (!users.containsKey(user.getUsername())) {
             users.put(user.getUsername(), user);
             return true;
         }
@@ -231,9 +269,14 @@ public class Storage {
 
     }
 
-    private static class SingletonHelper {
-        private static final Storage INSTANCE = new Storage();
+    public void close() {
+        try {
+            FileOutputStream fileOut = new FileOutputStream("./storage");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(Storage.getInstance());
+            objectOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-
 }
