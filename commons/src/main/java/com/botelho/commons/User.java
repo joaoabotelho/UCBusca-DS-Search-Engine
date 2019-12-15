@@ -7,8 +7,8 @@ public class User implements Serializable {
 
     private String password;
 
-    public User() {
-
+    public User(final String username) {
+        this(username, null);
     }
 
     public User(final String username, final String password) {

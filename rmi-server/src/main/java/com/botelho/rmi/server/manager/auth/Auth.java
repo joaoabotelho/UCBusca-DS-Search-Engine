@@ -36,7 +36,10 @@ public class Auth {
         return new RmiResponse(FAILED, null);
     }
 
-    private static void logout() {
-
+    private static RmiResponse logout(RmiRequest<User> rmiRequest) {
+        if(loggedInUsers.contains(rmiRequest.getUser().getUsername())) {
+            loggedInUsers.remove(rmiRequest.getUser().getUsername());
+        }
+        return new RmiResponse(SUCCESS, null);
     }
 }
