@@ -21,5 +21,6 @@ public class Main {
                 .exportObject(rmiServer, 0);
         LocateRegistry.createRegistry(RMI_PORT).rebind(RMI_REGISTRY_NAME, stub);
         logger.info("RMI Server successfully started.");
+        new Thread(() -> Storage.getInstance()).start();
     }
 }

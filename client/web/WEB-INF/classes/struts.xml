@@ -7,7 +7,7 @@
 <struts>
     <package name="default" namespace="/" extends="struts-default">
         <action name="search" class="com.botelho.commons.action.SearchAction" method="execute">
-            <result name = "success">/success.jsp</result>
+            <result name = "success">search_results.jsp</result>
             <result name = "error">/error.jsp</result>
         </action>
 
