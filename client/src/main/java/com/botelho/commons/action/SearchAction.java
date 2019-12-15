@@ -40,5 +40,6 @@ public class SearchAction extends ActionSupportBase {
     public ArrayList<WebPage> getResult() { return result; }
 
     public void setSearch(final String search) { this.search = search; }
+
     public void setResult(final ArrayList<WebPage> result) { this.result = result; }
 }

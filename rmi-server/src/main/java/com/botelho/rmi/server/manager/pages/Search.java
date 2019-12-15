@@ -17,7 +17,10 @@ public class Search {
 
     public static RmiResponse searchByWords(RmiRequest<String> rmiRequest){
         String search = rmiRequest.getData();
-        if(!search.startsWith("http")) {
+        UserType type = rmiRequest.getUser().getType();
+        if(search.startsWith("http") && type == UserType.ANONYMOUS) {
+            return new RmiResponse(ResponseStatus.FAILED, null);
+        } else {
             logger.info("Splitting words to List");
             List<String> data = Arrays.asList(search.split(" "));
 
@@ -27,7 +30,5 @@ public class Search {
 
             return new RmiResponse(ResponseStatus.SUCCESS, result);
         }
-
-        return new RmiResponse(ResponseStatus.FAILED, null);
     }
 }
