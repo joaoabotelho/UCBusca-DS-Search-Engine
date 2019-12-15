@@ -19,8 +19,8 @@ public class LoginAction extends ActionSupportBase {
         switch (rmiResponse.getStatus()) {
             case SUCCESS:
                 logger.info("User {} logged in.", user.getUsername());
-                getSession().put(CURRENT_USER, user);
-                if(user.getType() == UserType.ADMIN){
+                getSession().put(CURRENT_USER, rmiResponse.getData());
+                if(currentUser().getType() == UserType.ADMIN){
                     return "admin";
                 }
                 return SUCCESS;
