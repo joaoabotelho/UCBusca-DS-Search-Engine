@@ -13,6 +13,6 @@
 </head>
 
 <body>
-Hello World, <s:property value = "id"/>
+Hello World, <s:property value = "username"/>
 </body>
 </html>

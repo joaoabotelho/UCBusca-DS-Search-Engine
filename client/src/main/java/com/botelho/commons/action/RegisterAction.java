@@ -1,17 +1,15 @@
 package com.botelho.commons.action;
 
-import com.botelho.commons.RequestType;
-import com.botelho.commons.RmiRequest;
-import com.botelho.commons.RmiResponse;
-import com.botelho.commons.User;
+import com.botelho.commons.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class RegisterAction extends ActionSupportBase {
     private static Logger logger = LoggerFactory.getLogger(LoginAction.class);
-    private User user;
+    private String username, password;
 
     public String execute() {
+        User user = new User(username, password, UserType.NORMAL);
         RmiResponse rmiResponse = getRmiClient().communicate(new RmiRequest<>(null, RequestType.REGISTER, user));
 
         switch (rmiResponse.getStatus()) {
@@ -27,11 +25,19 @@ public class RegisterAction extends ActionSupportBase {
         return null;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(final User user) {
-        this.user = user;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

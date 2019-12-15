@@ -4,5 +4,5 @@ import java.io.Serializable;
 
 public enum ResponseStatus implements Serializable {
     SUCCESS,
-    FAILED
+    FAILED,
 }

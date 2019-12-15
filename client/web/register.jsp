@@ -14,9 +14,13 @@
 <body>
 <h3>Register</h3>
 <s:form action="registerAction">
-    <s:textfield name="user.username" label="Username" />
-    <s:password name="user.password" label="Password"/>
+    <s:textfield name="username" label="Username" />
+    <s:password name="password" label="Password"/>
     <s:submit/>
 </s:form>
+
+
+<s:a action="goHome">Home</s:a>
+<s:a action="goLogin">Login</s:a>
 </body>
 </html>
