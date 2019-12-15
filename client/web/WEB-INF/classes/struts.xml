@@ -15,6 +15,10 @@
             <result>register.jsp</result>
         </action>
 
+        <action name="goHome">
+            <result>index.jsp</result>
+        </action>
+
         <action name="registerAction" class="com.botelho.commons.action.RegisterAction" method="execute">
             <result name="success">/success.jsp</result>
             <result name="error">/registerFailed.jsp</result>

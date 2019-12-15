@@ -27,9 +27,12 @@ public class SearchAction extends ActionSupportBase {
                 logger.info("Search completed.");
                 result = rmiResponse.getData();
                 logger.info(Arrays.toString(rmiResponse.getData().toArray()));
-                break;
+                return SUCCESS;
+            case FAILED:
+                logger.info("Search not permitted");
+                return ERROR;
         }
-        return SUCCESS;
+        return null;
     }
 
     public String getSearch() { return search; }
