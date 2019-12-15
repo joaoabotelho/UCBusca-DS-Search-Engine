@@ -32,5 +32,25 @@
             <result name="success">/success.jsp</result>
             <result name="error">/loginFailed.jsp</result>
         </action>
+
+        <action name="goCreateUrl">
+            <result>adminCreateUrl.jsp</result>
+        </action>
+
+        <action name="adminCreateUrlAction" class="com.botelho.commons.action.AdminCreateUrlAction" method="execute">
+            <!--FIXME: Should be redirecting to somewhere else in case of success!!!!-->
+            <result name="success">/success.jsp</result>
+            <result name="error">/adminCreateUrlFailed.jsp</result>
+        </action>
+
+        <action name="goPromoteUser">
+            <result>adminPromoteUser.jsp</result>
+        </action>
+
+        <action name="adminPromoteUserAction" class="com.botelho.commons.action.AdminPromoteUserAction" method="execute">
+            <!--FIXME: Should be redirecting to somewhere else in case of success!!!!-->
+            <result name="success">/success.jsp</result>
+            <result name="error">/adminPromoteUserFailed.jsp</result>
+        </action>
     </package>
 </struts>
