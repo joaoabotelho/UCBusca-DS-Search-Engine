@@ -4,6 +4,7 @@ import com.botelho.commons.Search;
 import com.botelho.commons.User;
 import com.botelho.commons.UserType;
 import com.botelho.commons.WebPage;
+import org.apache.commons.lang3.SerializationUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -125,6 +126,7 @@ public class Storage implements Serializable, Closeable {
         if(user != null) {
             logger.info("User found to promote: {}", user.getUsername());
             user.setType(UserType.ADMIN);
+            user.setJustGotPromoted(true);
             return true;
         } else {
             logger.info("User not found.");
@@ -188,7 +190,11 @@ public class Storage implements Serializable, Closeable {
 
     public User getUser(User user) {
         if(authenticateUser(user)) {
-            return users.get(user.getUsername());
+            User userCopy = SerializationUtils.deserialize(SerializationUtils.serialize(user));
+            if(user.isJustGotPromoted()){
+                user.setJustGotPromoted(false);
+            }
+            return userCopy;
         }
         return null;
     }

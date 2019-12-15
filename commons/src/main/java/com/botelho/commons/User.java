@@ -11,6 +11,10 @@ public class User implements Serializable {
     private UserType type;
     private ArrayList<Search> previousSearches;
 
+    private boolean justGotPromoted;
+
+    private boolean alreadyShowedPromotedMessage = false;
+
     public User(final String username){ this(username, null,  null); }
 
     public User(){}
@@ -57,5 +61,19 @@ public class User implements Serializable {
 
     public void setPreviousSearches(ArrayList<Search> previousSearches) {
         this.previousSearches = previousSearches;
+    }
+
+    public void setJustGotPromoted(final boolean justGotPromoted){this.justGotPromoted = justGotPromoted;}
+
+    public boolean isJustGotPromoted() {
+        return justGotPromoted;
+    }
+
+    public boolean isAlreadyShowedPromotedMessage() {
+        return alreadyShowedPromotedMessage;
+    }
+
+    public void setAlreadyShowedPromotedMessage(boolean alreadyShowedPromotedMessage) {
+        this.alreadyShowedPromotedMessage = alreadyShowedPromotedMessage;
     }
 }

@@ -88,6 +88,7 @@
             <interceptor-ref name="defaultStack"/>
             <result name="success">/normalIndex.jsp</result>
             <result name="admin">/adminIndex.jsp</result>
+            <result name="adminJGP">/adminJustGotPromotedIndex.jsp</result>
             <result name="error">/loginFailed.jsp</result>
         </action>
 
