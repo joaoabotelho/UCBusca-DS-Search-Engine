@@ -22,7 +22,7 @@ public abstract class ActionSupportBase extends ActionSupport implements Session
     }
 
     protected User currentUser() {
-        return new User((String)session.get(USERNAME));
+        return (User) session.get(USERNAME);
     }
 
     public void setSession(Map<String, Object> session) {
