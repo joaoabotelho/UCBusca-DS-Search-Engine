@@ -7,5 +7,6 @@ public enum RequestType implements Serializable {
     SEARCH,
     REGISTER,
     CREATEURL,
-    PROMOTEUSER
+    PROMOTEUSER,
+    PREVIOUSSEARCH;
 }

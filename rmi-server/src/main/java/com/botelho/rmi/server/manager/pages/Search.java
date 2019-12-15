@@ -31,4 +31,10 @@ public class Search {
             return new RmiResponse(ResponseStatus.SUCCESS, result);
         }
     }
+
+    public static RmiResponse getPreviousSearchForUser(RmiRequest<User> rmiRequest) {
+        User user = Storage.getInstance().getUser(rmiRequest.getData());
+        return new RmiResponse(ResponseStatus.SUCCESS, user.getPreviousSearches());
+    }
+
 }

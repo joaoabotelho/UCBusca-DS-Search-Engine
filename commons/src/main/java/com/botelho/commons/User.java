@@ -1,6 +1,7 @@
 package com.botelho.commons;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class User implements Serializable {
     private String username;
@@ -8,6 +9,7 @@ public class User implements Serializable {
     private String password;
 
     private UserType type;
+    private ArrayList<Search> previousSearches;
 
     public User(final String username){ this(username, null,  null); }
 
@@ -48,4 +50,12 @@ public class User implements Serializable {
     }
 
     public void setType(final UserType type) { this.type = type; }
+
+    public ArrayList<Search> getPreviousSearches() {
+        return previousSearches;
+    }
+
+    public void setPreviousSearches(ArrayList<Search> previousSearches) {
+        this.previousSearches = previousSearches;
+    }
 }
