@@ -88,7 +88,7 @@ public class Storage implements Serializable, Closeable {
             Document doc = Jsoup.connect(url).get();  // Documentation: https://jsoup.org/
 
             WebPage page = newWebPage(url, doc.title(), "Hello World", countWords(doc.text()));
-
+            addToIndexStringToWebPage(url, page);
             addWebPageToIndex(page);
             depth++;
             Elements links = doc.select("a[href]");
@@ -159,6 +159,7 @@ public class Storage implements Serializable, Closeable {
 
     void addToIndexStringToWebPage(String key, WebPage page) {
         // add a page to the inverted index
+        logger.info("Adding key: {} to index", key);
         HashSet<WebPage> associated_pages = index.get(key);
         if (associated_pages == null) {
             associated_pages = new HashSet<>();
