@@ -46,4 +46,8 @@ public class User implements Serializable {
     public UserType getType() {
         return type;
     }
+
+    public void setType(final UserType type) {
+        this.type = type;
+    }
 }
