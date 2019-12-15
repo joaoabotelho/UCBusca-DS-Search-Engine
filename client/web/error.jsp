@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: joaobotelho
@@ -8,10 +9,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Invalid User Name or Password</title>
+    <title>Not Authorized</title>
 </head>
 
 <body>
-Wrong user name or password provided.
+You can't do that. Please Login first.
+<s:a action="goLogin">Login</s:a>
+<s:a action="goHome">Home</s:a>
 </body>
 </html>

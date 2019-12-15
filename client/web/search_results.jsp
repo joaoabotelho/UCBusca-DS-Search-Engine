@@ -20,5 +20,7 @@
         <s:property value="link_count"/><br/>
     </fieldset>
 </s:iterator>
+
+<s:a action="goHome">Home</s:a>
 </body>
 </html>
