@@ -4,5 +4,6 @@ import java.io.Serializable;
 
 public enum RequestType implements Serializable {
     LOGIN,
-    SEARCH
+    SEARCH,
+    REGISTER
 }

@@ -17,6 +17,7 @@
     <s:textfield name="user.username" label="Username" />
     <s:password name="user.password" label="Password"/>
     <s:submit/>
+    <p> Failed to login </p>
 </s:form>
 </body>
 </html>

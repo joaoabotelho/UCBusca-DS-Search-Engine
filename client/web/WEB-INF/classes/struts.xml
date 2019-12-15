@@ -15,13 +15,18 @@
             <result>register.jsp</result>
         </action>
 
+        <action name="registerAction" class="com.botelho.commons.action.RegisterAction" method="execute">
+            <result name="success">/success.jsp</result>
+            <result name="error">/registerFailed.jsp</result>
+        </action>
+
         <action name="goLogin">
             <result>login.jsp</result>
         </action>
 
         <action name="loginAction" class="com.botelho.commons.action.LoginAction" method="execute">
             <result name="success">/success.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="error">/loginFailed.jsp</result>
         </action>
     </package>
 </struts>
