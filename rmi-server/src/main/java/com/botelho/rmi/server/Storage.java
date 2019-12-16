@@ -134,6 +134,17 @@ public class Storage implements Serializable, Closeable {
         }
     }
 
+    public Boolean unpromoteUser(String username) {
+        User user = userFind(username);
+        if(user != null) {
+            user.setJustGotPromoted(false);
+            return true;
+        } else {
+            logger.info("User not found.");
+            return false;
+        }
+    }
+
     public void seedStorage() {
         try {
             URI path;
@@ -190,11 +201,7 @@ public class Storage implements Serializable, Closeable {
 
     public User getUser(User user) {
         if(authenticateUser(user)) {
-            User userCopy = SerializationUtils.deserialize(SerializationUtils.serialize(user));
-            if(user.isJustGotPromoted()){
-                user.setJustGotPromoted(false);
-            }
-            return userCopy;
+            return users.get(user.getUsername());
         }
         return null;
     }
@@ -278,6 +285,7 @@ public class Storage implements Serializable, Closeable {
     public boolean createUser(User user) {
         if(!users.containsKey(user.getUsername())) {
             if(users.isEmpty()){
+                logger.info("Doesnt have any users and becoming first ADMIN");
                user.setType(UserType.ADMIN);
             }
             users.put(user.getUsername(), user);

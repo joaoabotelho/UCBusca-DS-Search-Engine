@@ -21,6 +21,7 @@
         </global-results>
 
         <action name="search" class="com.botelho.commons.action.SearchAction" method="execute">
+            <interceptor-ref name="defaultStack"/>
             <result name="success">search_results.jsp</result>
             <result name="error">/error.jsp</result>
         </action>

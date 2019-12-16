@@ -20,8 +20,10 @@ public class LoginAction extends ActionSupportBase {
             case SUCCESS:
                 logger.info("User {} logged in.", user.getUsername());
                 getSession().put(CURRENT_USER, rmiResponse.getData());
+                logger.info("CURRENT USER TYPE: {}", currentUser().getType());
                 if(currentUser().getType() == UserType.ADMIN){
                     if(currentUser().isJustGotPromoted()){
+                        getRmiClient().communicate(new RmiRequest<>(null, RequestType.DONTSHOW, currentUser().getUsername()));
                         return "adminJGP";
                     }
                     return "admin";

@@ -9,7 +9,7 @@ public class User implements Serializable {
     private String password;
 
     private UserType type;
-    private ArrayList<Search> previousSearches;
+    private ArrayList<Search> previousSearches = new ArrayList<>();
 
     private boolean justGotPromoted;
 
@@ -67,13 +67,5 @@ public class User implements Serializable {
 
     public boolean isJustGotPromoted() {
         return justGotPromoted;
-    }
-
-    public boolean isAlreadyShowedPromotedMessage() {
-        return alreadyShowedPromotedMessage;
-    }
-
-    public void setAlreadyShowedPromotedMessage(boolean alreadyShowedPromotedMessage) {
-        this.alreadyShowedPromotedMessage = alreadyShowedPromotedMessage;
     }
 }
