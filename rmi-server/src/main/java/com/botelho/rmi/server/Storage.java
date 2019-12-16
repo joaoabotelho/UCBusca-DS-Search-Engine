@@ -1,8 +1,10 @@
 package com.botelho.rmi.server;
 
+import com.botelho.commons.Search;
 import com.botelho.commons.User;
 import com.botelho.commons.UserType;
 import com.botelho.commons.WebPage;
+import org.apache.commons.lang3.SerializationUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,6 +34,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class Storage implements Serializable, Closeable {
     private static final int MAX_DEPTH = 4;
@@ -114,7 +117,7 @@ public class Storage implements Serializable, Closeable {
         return true;
     }
 
-    User userFind(String username){
+    public User userFind(String username){
         return users.get(username);
     }
 
@@ -123,6 +126,18 @@ public class Storage implements Serializable, Closeable {
         if(user != null) {
             logger.info("User found to promote: {}", user.getUsername());
             user.setType(UserType.ADMIN);
+            user.setJustGotPromoted(true);
+            return true;
+        } else {
+            logger.info("User not found.");
+            return false;
+        }
+    }
+
+    public Boolean unpromoteUser(String username) {
+        User user = userFind(username);
+        if(user != null) {
+            user.setJustGotPromoted(false);
             return true;
         } else {
             logger.info("User not found.");
@@ -200,10 +215,6 @@ public class Storage implements Serializable, Closeable {
 
 
     public ArrayList<WebPage> searchFor(List<String> data, User user) {
-        /* OLD CODE: existing data?
-        Search exiting_search = search_requests.get(data);
-        if (exiting_search == null) {
-        */
         HashSet<WebPage> pages = new HashSet<>();
 
         for (String word : data) {
@@ -216,28 +227,21 @@ public class Storage implements Serializable, Closeable {
         ArrayList<WebPage> list = new ArrayList<>(pages);
         Collections.sort(list, (lhs, rhs) -> Integer.compare(rhs.link_count, lhs.link_count));
 
-        /* OLD CODE Record of search to User
-        Search new_search = new Search(next_search_id, data, list);
-        search_requests.put(data, new_search);
-        search_freq.put(data, 1);
-        if (user != null) {
-            User listed_user = this.user_find(user.id);
-            if(listed_user.previous_searches == null){
-                listed_user.previous_searches = new ArrayList<>();
+        String searchString = data.stream()
+                .map(n -> String.valueOf(n))
+                .collect(Collectors.joining(" "));
+
+        Search newSearch = new Search(searchString, list);
+        if (user.getType() != UserType.ANONYMOUS) {
+            User listedUser = this.userFind(user.getUsername());
+            if(listedUser.getPreviousSearches() == null){
+                listedUser.setPreviousSearches(new ArrayList<>());
             }
-            listed_user.previous_searches.add(new_search);
+            listedUser.getPreviousSearches().add(newSearch);
         }
-         */
         logger.info("Got this pages: " + Arrays.toString(pages.toArray()));
         logger.info("Got this list: " + Arrays.toString(list.toArray()));
         return list;
-            /* OLD CODE id existing data
-        } else {
-            Integer n_times_searched = search_freq.get(data);
-            search_freq.put(data, n_times_searched+1);
-            return exiting_search;
-            }
-             */
     }
 
     private Map<String, Integer> countWords(String text) {
@@ -281,6 +285,7 @@ public class Storage implements Serializable, Closeable {
     public boolean createUser(User user) {
         if(!users.containsKey(user.getUsername())) {
             if(users.isEmpty()){
+                logger.info("Doesnt have any users and becoming first ADMIN");
                user.setType(UserType.ADMIN);
             }
             users.put(user.getUsername(), user);

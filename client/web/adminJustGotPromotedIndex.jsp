@@ -12,10 +12,11 @@
     <title>Logged Admin</title>
 </head>
 <body>
+<h3>You just got Promoted! YEY!</h3>
+
 <s:a action="logoutAction">Logout</s:a>
 <s:a action="goAdminUrl">Add new URL</s:a>
 <s:a action="goAdminPromote">Promote User to Admin</s:a>
-<s:a action="previousSearchAdmin">Last Searches</s:a>
 
 <s:form action="searchAdmin">
     <s:textfield name="search" label="Search" />

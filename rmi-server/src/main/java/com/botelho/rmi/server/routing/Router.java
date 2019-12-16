@@ -22,6 +22,10 @@ public class Router {
                 return Admin.createUrl(rmiRequest);
             case PROMOTEUSER:
                 return Admin.promoteUser(rmiRequest);
+            case PREVIOUSSEARCH:
+                return Search.getPreviousSearchForUser(rmiRequest);
+            case DONTSHOW:
+                return Admin.dontShow(rmiRequest);
         }
 
         return null;

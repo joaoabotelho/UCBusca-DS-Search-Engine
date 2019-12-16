@@ -27,6 +27,11 @@ public class Admin {
         return new RmiResponse(FAILED, null);
     }
 
+    public static RmiResponse dontShow(RmiRequest<String> rmiRequest){
+        Storage.getInstance().unpromoteUser(rmiRequest.getData());
+        return new RmiResponse(SUCCESS, null);
+    }
+
     public static RmiResponse createUrl(RmiRequest<String> rmiRequest) {
         try {
             if (Storage.getInstance().newUrlToIndex(rmiRequest.getData(), 0)) {
